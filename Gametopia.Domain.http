@@ -1,0 +1,6 @@
+@Gametopia.Domain_HostAddress = http://localhost:5218
+
+GET {{Gametopia.Domain_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
