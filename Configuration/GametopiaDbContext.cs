@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Gametopia.WebAPI.Data
+namespace Gametopia.WebApi.Configuration
 {
     public class GametopiaDbContext : DbContext
     {
