@@ -15,6 +15,10 @@ namespace Gametopia.WebApi.Configuration
             base.OnModelCreating(modelBuilder);
             // Configuración de relaciones y restricciones
 
+            modelBuilder.Entity<IdentityUser>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+
             modelBuilder.Entity<UserRelation>()
                 .ToTable("UserRelations");
             modelBuilder.Entity<UserRelation>()
