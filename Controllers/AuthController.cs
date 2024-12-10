@@ -14,11 +14,13 @@ namespace Gametopia.WebApi.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _configuration;
+        private readonly ProfileService _profileService;
 
-        public AuthController(UserManager<IdentityUser> userManager, IConfiguration configuration)
+        public AuthController(UserManager<IdentityUser> userManager, IConfiguration configuration, ProfileService profileService)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _profileService = profileService;
         }
 
         [HttpPost("register")]
@@ -26,6 +28,8 @@ namespace Gametopia.WebApi.Controllers
         {
             var user = new IdentityUser { UserName = model.Username, Email = model.Email };
             var result = await _userManager.CreateAsync(user, model.Password);
+
+            var profile = _profileService.UpdateProfileAsync(user.Id, string.Empty, user.UserName);
 
             if (!result.Succeeded)
                 return BadRequest(result.Errors);
